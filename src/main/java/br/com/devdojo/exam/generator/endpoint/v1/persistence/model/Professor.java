@@ -17,6 +17,7 @@ public class Professor extends AbstractEntity {
     @Column(unique = true)
     private String email;
 
+
     public String getNam() {
         return nam;
     }
