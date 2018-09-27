@@ -13,6 +13,7 @@ public class constants {
     public static final long EXPIRATION_TIME = 864000000L;//1 day
 
 
+    //Só p imprimir a conversao de milliseconds para dias.
     public static void main (String[] args){
         System.out.println(TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS));
     }

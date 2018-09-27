@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 public class Professor extends AbstractEntity {
 
     @NotEmpty (message = "The field name cannot be empty")
-    private String nam;
+    private String name;
 
     @Email(message = "This email is not valid")
     @NotEmpty( message = "The field email cannot be empty")
@@ -18,12 +18,12 @@ public class Professor extends AbstractEntity {
     private String email;
 
 
-    public String getNam() {
-        return nam;
+    public String getName() {
+        return name;
     }
 
-    public void setNam(String nam) {
-        this.nam = nam;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
