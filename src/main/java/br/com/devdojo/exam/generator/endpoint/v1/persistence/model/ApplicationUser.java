@@ -24,7 +24,7 @@ public class ApplicationUser extends AbstractEntity{
 
     }
 
-    public ApplicationUser(UserDetails applicationUser) {
+    public ApplicationUser(ApplicationUser applicationUser) {
         this.userName = applicationUser.userName;
         this.password = applicationUser.password;
         this.professor = applicationUser.professor;
