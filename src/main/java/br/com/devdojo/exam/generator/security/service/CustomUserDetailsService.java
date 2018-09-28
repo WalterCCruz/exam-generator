@@ -32,11 +32,11 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
 
-
-    public ApplicationUser loadApplicationUserByUserName(String username) {
-        return Optional.ofNullable(applicationUserRepository.findByUserName(username)).orElseThrow(() -> new UsernameNotFoundException("User not found"));
-
+    public ApplicationUser loadApplicationUserByUsername(String username) {
+        return Optional.ofNullable(applicationUserRepository.findByUsername(username))
+                .orElseThrow(() -> new UsernameNotFoundException("ApplicationUser not found"));
     }
+
 
 
     private final static class CustomerUserDetails extends ApplicationUser implements UserDetails {
