@@ -1,6 +1,6 @@
 package br.com.devdojo.exam.generator.security.filter;
 
-import br.com.devdojo.exam.generator.endpoint.v1.persistence.model.ApplicationUser;
+import br.com.devdojo.exam.generator.persistence.model.ApplicationUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

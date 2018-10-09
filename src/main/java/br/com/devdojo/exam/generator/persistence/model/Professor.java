@@ -1,4 +1,4 @@
-package br.com.devdojo.exam.generator.endpoint.v1.persistence.model;
+package br.com.devdojo.exam.generator.persistence.model;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;

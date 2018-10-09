@@ -1,6 +1,4 @@
-package br.com.devdojo.exam.generator.endpoint.v1.persistence.model;
-
-import org.springframework.boot.autoconfigure.web.ResourceProperties;
+package br.com.devdojo.exam.generator.persistence.model;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

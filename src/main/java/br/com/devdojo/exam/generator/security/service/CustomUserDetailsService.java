@@ -1,15 +1,16 @@
 package br.com.devdojo.exam.generator.security.service;
 
-
-import br.com.devdojo.exam.generator.endpoint.v1.persistence.model.ApplicationUser;
-import br.com.devdojo.exam.generator.endpoint.v1.persistence.repository.ApplicationUserRepository;
+import br.com.devdojo.exam.generator.persistence.model.ApplicationUser;
+import br.com.devdojo.exam.generator.persistence.repository.ApplicationUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -19,29 +20,27 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private final ApplicationUserRepository applicationUserRepository;
 
+
     @Autowired
     public CustomUserDetailsService(ApplicationUserRepository applicationUserRepository) {
         this.applicationUserRepository = applicationUserRepository;
     }
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDetails applicationUser = loadUserByUsername(username);
-        return new CustomerUserDetails(applicationUser);
+        ApplicationUser applicationUser = loadApplicationUserByUsername(username);
+        return new CustomUserDetails(applicationUser);
     }
-
 
     public ApplicationUser loadApplicationUserByUsername(String username) {
         return Optional.ofNullable(applicationUserRepository.findByUsername(username))
                 .orElseThrow(() -> new UsernameNotFoundException("ApplicationUser not found"));
     }
 
+    private final static class CustomUserDetails extends ApplicationUser implements UserDetails {
 
-
-    private final static class CustomerUserDetails extends ApplicationUser implements UserDetails {
-        private CustomerUserDetails(UserDetails applicationUser){
-            super(applicationUser);
+        private CustomUserDetails (ApplicationUser applicationUser) {
+            super (applicationUser);
         }
 
         @Override
@@ -49,7 +48,6 @@ public class CustomUserDetailsService implements UserDetailsService {
             List<GrantedAuthority> authorityListProfessor = AuthorityUtils.createAuthorityList("ROLE_PROFESSOR");
             List<GrantedAuthority> authorityListStudent = AuthorityUtils.createAuthorityList("ROLE_STUDENT");
             return this.getProfessor() != null ? authorityListProfessor : authorityListStudent;
-
         }
 
         @Override
@@ -65,7 +63,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         @Override
         public boolean isAccountNonLocked() {
-            return true;
+            return false;
         }
 
         @Override
@@ -77,5 +75,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         public boolean isEnabled() {
             return true;
         }
+
     }
 }
+

@@ -1,7 +1,6 @@
-package br.com.devdojo.exam.generator.endpoint.v1.persistence.model;
+package br.com.devdojo.exam.generator.persistence.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
